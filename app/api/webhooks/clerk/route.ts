@@ -1,7 +1,7 @@
 import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
-import { createUser } from "@/actions/create-user";
+import { createUser, deleteUser, updateUser } from "@/actions/user-actions";
 
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
@@ -47,16 +47,41 @@ export async function POST(req: Request) {
   const eventType = evt.type;
 
   if (eventType === "user.created") {
+    const { id, username, first_name, last_name, email_addresses, image_url } =
+      evt.data;
+
     const user = {
-      userId: payload.id,
-      username: payload.username,
-      firstName: payload.first_name,
-      lastName: payload.last_name,
-      email: payload.email_addresses[0].email_address,
-      profilePic: payload.profile_image_url,
+      userId: id,
+      username: username!,
+      firstName: first_name!,
+      lastName: last_name,
+      email: email_addresses[0].email_address!,
+      profilePic: image_url,
     };
 
     await createUser(user);
+  }
+
+  if (eventType === "user.updated") {
+    const { id, username, first_name, last_name, email_addresses, image_url } =
+      evt.data;
+
+    const user = {
+      userId: id,
+      username: username!,
+      firstName: first_name!,
+      lastName: last_name,
+      email: email_addresses[0].email_address!,
+      profilePic: image_url,
+    };
+
+    await updateUser(id, user);
+  }
+
+  if (eventType === "user.deleted") {
+    const { id } = evt.data;
+
+    await deleteUser(id!);
   }
 
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
