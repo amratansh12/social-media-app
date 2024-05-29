@@ -20,11 +20,11 @@ export const createUser = async (user: CreateUserParams) => {
   }
 };
 
-export const updateUser = async (userId: string, user: UpdateUserParams) => {
+export const updateUser = async (id: string, user: UpdateUserParams) => {
   try {
     await connectToDatabase();
 
-    const updatedUser = await User.findByIdAndUpdate(userId, user, {
+    const updatedUser = await User.findOneAndUpdate({ userId: id }, user, {
       new: true,
     });
 
@@ -38,11 +38,11 @@ export const updateUser = async (userId: string, user: UpdateUserParams) => {
   }
 };
 
-export const deleteUser = async (userId: string) => {
+export const deleteUser = async (id: string) => {
   try {
     await connectToDatabase();
 
-    await User.findByIdAndDelete(userId);
+    await User.findOneAndDelete({ userId: id });
   } catch (error) {
     handleError(error);
   }
