@@ -4,8 +4,5 @@ type CreateUserParams = {
   firstName: string;
   lastName?: string;
   email: string;
-  password: string;
   profilePic?: string;
-  bio?: string;
-  posts: Array<string> | [];
 };
