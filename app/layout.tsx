@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Fira_Sans } from "next/font/google";
 import "./globals.css";
-import Image from "next/image";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Navbar } from "./_components/navbar";
 
 const inter = Fira_Sans({
   subsets: ["latin"],
@@ -23,10 +21,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>
-          <Navbar />
-          <section>{children}</section>
-        </body>
+        <body className={inter.className}>{children}</body>
       </html>
     </ClerkProvider>
   );
