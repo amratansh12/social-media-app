@@ -1,4 +1,5 @@
-import { Navbar } from "../_components/navbar";
+import { Toaster } from "@/components/ui/toaster";
+import { Navbar } from "./_components/navbar";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -6,10 +7,13 @@ interface MainLayoutProps {
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <div>
-      <Navbar />
-      <section>{children}</section>
-    </div>
+    <>
+      <Toaster />
+      <div>
+        <Navbar />
+        <section>{children}</section>
+      </div>
+    </>
   );
 };
 

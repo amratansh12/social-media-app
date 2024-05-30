@@ -47,3 +47,33 @@ export const deleteUser = async (id: string) => {
     handleError(error);
   }
 };
+
+export const getUserByUserId = async (userId: string) => {
+  try {
+    await connectToDatabase();
+
+    const user = await User.findOne({ userId });
+
+    if (!user) {
+      throw new Error("Unable to find the user");
+    }
+
+    return JSON.parse(JSON.stringify(user));
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+export const userBioChange = async (userId: string, bio: string) => {
+  try {
+    await connectToDatabase();
+
+    const updatedUser = await User.findOneAndUpdate({ userId }, { bio });
+
+    if (!updatedUser) {
+      throw new Error("Unable to update the bio");
+    }
+  } catch (error) {
+    handleError(error);
+  }
+};
