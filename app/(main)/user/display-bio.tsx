@@ -54,7 +54,7 @@ const DisplayBio = ({ currentUser, user }: DisplayBioProps) => {
         <form className="flex" onSubmit={handleBioUpdate}>
           <Input
             placeholder="Update bio"
-            className="px-1 py-0 bg-slate-100 border-slate-100 w-1/2 rounded-r-none"
+            className="px-1 py-0 bg-slate-100 border-slate-100 w-full md:w-1/2 rounded-r-none"
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             disabled={loading}

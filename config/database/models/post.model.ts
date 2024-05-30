@@ -6,14 +6,20 @@ const PostSchema = new Schema({
     ref: "User",
     required: true,
   },
-  content: {
+  caption: {
     type: String,
     required: true,
     maxlength: 1000,
   },
-  media: {
-    type: [String],
-    default: [],
+  imageUrl: {
+    type: String,
+    required: true,
+  },
+  place: {
+    type: String,
+  },
+  hashtags: {
+    type: String,
   },
   likes: [
     {

@@ -30,7 +30,7 @@ export const Navbar = () => {
           <Loader2 className="animate-spin text-dark-blue-100 h-8 w-8" />
         </ClerkLoading>
         <ClerkLoaded>
-          <Button variant="custom">
+          <Button variant="custom" asChild>
             <SignInButton />
           </Button>
         </ClerkLoaded>

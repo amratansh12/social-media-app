@@ -3,12 +3,14 @@
 import { searchUser } from "@/actions/search-actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Loader2 } from "lucide-react";
+import { ArrowLeftFromLine, Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import UserAvatar from "./user-avatar";
+import { useRouter } from "next/navigation";
 
 export const SearchUser = () => {
+  const router = useRouter();
   const [userSearch, setUserSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState<UserDataParam[]>([]);
@@ -55,6 +57,15 @@ export const SearchUser = () => {
               alt="Search"
             />
           )}
+        </Button>
+
+        <Button
+          className="ml-2 p-2"
+          type="button"
+          onClick={() => router.push("/home")}
+        >
+          <ArrowLeftFromLine className="h-5 w-5 text-dark-blue-100" />
+          <span className="hidden md:block text-dark-blue-100 ml-1">Home</span>
         </Button>
       </form>
       {users.length > 0 && (

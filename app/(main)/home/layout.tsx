@@ -1,4 +1,5 @@
-import { SearchUser } from "./_components/search-user";
+import NavMenu from "./nav-menu";
+import { SearchUser } from "./search/search-user";
 
 interface HomeLayoutProps {
   children: React.ReactNode;
@@ -6,10 +7,10 @@ interface HomeLayoutProps {
 
 const HomeLayout = ({ children }: HomeLayoutProps) => {
   return (
-    <>
-      <SearchUser />
-      <section>{children}</section>
-    </>
+    <main>
+      <NavMenu />
+      {children}
+    </main>
   );
 };
 
