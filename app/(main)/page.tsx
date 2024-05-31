@@ -1,4 +1,7 @@
+import { Button } from "@/components/ui/button";
+import { SignedIn } from "@clerk/nextjs";
 import Image from "next/image";
+import Link from "next/link";
 
 const Page = () => {
   return (
@@ -14,6 +17,18 @@ const Page = () => {
           alt="Social Media App"
           className="w-[300px] md:w-[500px] aspect-square rounded-lg"
         />
+        <SignedIn>
+          <Link href="/home">
+            <Button
+              size="lg"
+              variant="custom"
+              className="flex items-center justify-center gap-2 w-full shadow-sm"
+            >
+              Go to home
+              <Image src="/assets/home.svg" width={24} height={24} alt="Home" />
+            </Button>
+          </Link>
+        </SignedIn>
       </div>
     </div>
   );

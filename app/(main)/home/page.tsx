@@ -1,9 +1,7 @@
+import PostArea from "./post-area";
+
 const page = () => {
-  return (
-    <div>
-      <p>Only authenticated users can see this</p>
-    </div>
-  );
+  return <PostArea />;
 };
 
 export default page;

@@ -10,7 +10,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
     <>
       <Toaster />
       <Navbar />
-      <section>{children}</section>
+      <main>{children}</main>
     </>
   );
 };

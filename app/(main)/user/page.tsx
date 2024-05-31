@@ -9,11 +9,13 @@ import DisplayBio from "./display-bio";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { ArrowLeftFromLine } from "lucide-react";
+import UserPosts from "./user-posts";
+import Link from "next/link";
 
 const page = () => {
   const { user } = useUser();
   const searchParams = useSearchParams();
-  const id = searchParams.get("id");
+  const id = searchParams!.get("id");
   const [currentUser, setCurrentUser] = useState<UserDataParam>();
   const router = useRouter();
 
@@ -65,17 +67,35 @@ const page = () => {
               </h2>
             </div>
             <DisplayBio currentUser={currentUser!} user={user} />
+
+            <Link href={`/messages/direct/${id}`}>
+              <Button
+                size="lg"
+                variant="custom"
+                className="mt-4 w-full md:w-1/2 space-x-2 shadow-sm"
+              >
+                <span>Message User</span>
+                <Image
+                  src="/assets/send.svg"
+                  width={20}
+                  height={20}
+                  alt="Send"
+                />
+              </Button>
+            </Link>
           </div>
         </div>
       )}
 
       <h1 className="text-xl text-soft-black py-4">User Posts</h1>
+      <UserPosts id={id!} />
     </div>
   );
 };
 
 export default page;
 
+//Loading skeleton for this page
 const ProfileSkeleton = () => {
   return (
     <div className="p-4 md:p-6">
@@ -93,7 +113,8 @@ const ProfileSkeleton = () => {
         <div className="w-full space-y-2">
           <Skeleton className="bg-soft-black/20 w-32 h-8" />
           <Skeleton className="bg-soft-black/20 w-24 h-6" />
-          <Skeleton className="bg-soft-black/20 w-60 h-8" />
+          <Skeleton className="bg-soft-black/20 w-1/2 h-8" />
+          <Skeleton className="h-8 w-1/2 bg-soft-black/20 rounded-sm" />
         </div>
       </div>
 

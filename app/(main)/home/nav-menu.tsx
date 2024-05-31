@@ -29,7 +29,7 @@ const NavMenu = () => {
   }
 
   return (
-    <header className="p-4 flex items-center justify-between">
+    <header className="p-4 flex items-center justify-between shadow-md">
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
@@ -42,12 +42,12 @@ const NavMenu = () => {
                   alt="Search"
                   className="mr-1"
                 />
-                Search
+                <span className="hidden md:block">Search</span>
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link href="/home/messages">
+            <Link href="/messages">
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 <Image
                   src="/assets/messages.svg"
@@ -56,7 +56,7 @@ const NavMenu = () => {
                   alt="Search"
                   className="mr-1"
                 />
-                Messages
+                <span className="hidden md:block">Messages</span>
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
@@ -71,7 +71,7 @@ const NavMenu = () => {
                     alt="Search"
                     className="mr-1"
                   />
-                  Profile
+                  <span className="hidden md:block">Profile</span>
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>

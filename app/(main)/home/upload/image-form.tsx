@@ -1,4 +1,4 @@
-import { CreatePost } from "@/actions/post-actions";
+import { createPost } from "@/actions/post-actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -32,7 +32,7 @@ const ImageForm = ({ imageUrl }: { imageUrl: string }) => {
         hashtags: hashtags,
       };
 
-      await CreatePost(image);
+      await createPost(image);
 
       toast({
         title: "Success",

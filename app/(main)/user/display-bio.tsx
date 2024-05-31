@@ -32,6 +32,8 @@ const DisplayBio = ({ currentUser, user }: DisplayBioProps) => {
         title: "Success",
         description: "Bio updated successfully",
       });
+
+      setBio("");
       currentUser.bio = bio;
     } catch (error) {
       console.log(error);
