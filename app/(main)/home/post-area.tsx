@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ImageCard } from "./image-card";
 
 const PostArea = () => {
   const [posts, setPosts] = useState<PostParams[]>([]);
@@ -45,28 +46,18 @@ const PostArea = () => {
     <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
       {posts.length > 0 &&
         posts.map((post) => (
-          <Card className="flex">
-            <CardHeader>
-              <Image
-                src={post.imageUrl}
-                width={300}
-                height={300}
-                alt="Image"
-                className="rounded-md shadow-sm border border-slate-300"
-              />
-            </CardHeader>
-
-            <CardFooter className="flex flex-col items-start gap-2 my-6 mr-6 flex-1">
-              <CardTitle>{post.author.firstName}</CardTitle>
-              <CardDescription>{post.caption}</CardDescription>
-              <CardDescription>
-                created at {post.createdAt.toString()}
-              </CardDescription>
-              <CardDescription className="text-dark-blue-200">
-                {post.hashtags}
-              </CardDescription>
-            </CardFooter>
-          </Card>
+          <ImageCard
+            key={post._id!.toString()}
+            postId={post._id!}
+            author={post.author}
+            imageUrl={post.imageUrl}
+            caption={post.caption}
+            hashtags={post.hashtags}
+            place={post.place}
+            createdAt={post.createdAt.toString()}
+            comments={post.comments}
+            likes={post.likes}
+          />
         ))}
     </section>
   );

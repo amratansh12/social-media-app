@@ -73,6 +73,7 @@ export const SearchUser = () => {
           <h2 className="text-xl">Search Results</h2>
           {users.map((user) => (
             <UserAvatar
+              key={user.userId}
               username={user.username}
               firstName={user.firstName}
               lastName={user.lastName}

@@ -61,8 +61,8 @@ const page = () => {
           <div className="w-full">
             <div className="w-full flex items-center justify-between">
               <h2 className="text-lg">
-                {`${user.firstName} ${
-                  user.lastName !== null ? user.lastName : ""
+                {`${currentUser.firstName} ${
+                  currentUser.lastName !== null ? currentUser.lastName : ""
                 }`}
               </h2>
             </div>

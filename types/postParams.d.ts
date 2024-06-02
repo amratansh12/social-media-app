@@ -7,6 +7,7 @@ interface CreatePostParams {
 }
 
 interface PostParams {
+  _id?: Types.ObjectId;
   author: Types.ObjectId;
   caption: string;
   imageUrl: string;

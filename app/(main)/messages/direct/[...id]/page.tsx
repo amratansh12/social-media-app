@@ -1,13 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ArrowLeftFromLine } from "lucide-react";
+import { ArrowLeftFromLine, Loader2 } from "lucide-react";
 import Link from "next/link";
 import MessageForm from "./message-form";
 import MessageOutput from "./message-output";
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
-import { getMessageByUserAndSender } from "@/actions/message-actions";
 
 interface Props {
   params: {
@@ -17,24 +16,15 @@ interface Props {
 
 const page = ({ params: { id } }: Props) => {
   const { user } = useUser();
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<MessageParam[]>([]);
 
-  useEffect(() => {
-    const fetchMessages = async () => {
-      try {
-        const data = await getMessageByUserAndSender(user?.id!, id);
-
-        if (!data) {
-          throw new Error("Internal server error");
-        }
-
-        //todo: fetch message
-        console.log(JSON.parse(data!));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  }, []);
+  if (!user) {
+    return (
+      <div className="py-4">
+        <Loader2 className="animate-spin h-8 w-8 text-soft-black" />
+      </div>
+    );
+  }
 
   return (
     <div className="h-full py-4">
@@ -47,8 +37,13 @@ const page = ({ params: { id } }: Props) => {
         </Link>
       </div>
 
-      <MessageOutput id={id} messages={messages} />
-      <MessageForm userId={id} />
+      <MessageOutput
+        sender={user?.id!}
+        setMessages={setMessages}
+        receiver={id}
+        messages={messages}
+      />
+      <MessageForm userId={id} setMessages={setMessages} />
     </div>
   );
 };

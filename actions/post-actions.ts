@@ -4,6 +4,7 @@ import { Post } from "@/config/database/models/post.model";
 import { User } from "@/config/database/models/user.model";
 import { connectToDatabase } from "@/config/database/mongoose";
 import { handleError } from "@/lib/utils";
+import { Types } from "mongoose";
 
 export const createPost = async (image: CreatePostParams) => {
   try {
@@ -60,6 +61,38 @@ export const getPostsByUserId = async (id: string) => {
     }
 
     return JSON.stringify(images);
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+export const likePost = async (userId: string, postId: Types.ObjectId) => {
+  try {
+    await connectToDatabase();
+
+    const user = await User.findOne({ userId });
+
+    if (!user) {
+      throw new Error("Unauthorized");
+    }
+
+    const post = await Post.findOne({ _id: postId });
+
+    if (post.likes.includes(user._id)) {
+      return "already liked";
+    }
+
+    const newPost = await Post.findOneAndUpdate(
+      { _id: postId },
+      { $push: { likes: user._id } },
+      { new: true }
+    );
+
+    if (!newPost) {
+      throw new Error("Unable to like");
+    }
+
+    return "updated";
   } catch (error) {
     handleError(error);
   }

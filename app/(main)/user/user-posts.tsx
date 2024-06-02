@@ -40,8 +40,12 @@ const UserPosts = ({ id }: { id: string }) => {
       {images.length > 0 && (
         <article className="grid grid-cols-2 lg:grid-cols-3 gap-4 grid-rows-1">
           {images.map((image) => (
-            <div className="bg-soft-black/10 rounded-md shadow-sm px-2 flex justify-center items-center object-cover mx-auto w-full">
+            <div
+              className="bg-soft-black/10 rounded-md shadow-sm px-2 flex justify-center items-center object-cover mx-auto w-full"
+              key={image.author._id}
+            >
               <Image
+                key={image._id.toString()}
                 src={image.imageUrl}
                 width={200}
                 height={200}
