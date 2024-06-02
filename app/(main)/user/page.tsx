@@ -12,7 +12,7 @@ import { ArrowLeftFromLine } from "lucide-react";
 import UserPosts from "./user-posts";
 import Link from "next/link";
 
-const page = () => {
+const UserPage = () => {
   const { user } = useUser();
   const searchParams = useSearchParams();
   const id = searchParams!.get("id");
@@ -93,7 +93,7 @@ const page = () => {
   );
 };
 
-export default page;
+export default UserPage;
 
 //Loading skeleton for this page
 const ProfileSkeleton = () => {

@@ -10,7 +10,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const page = () => {
+const ChatPage = () => {
   const [chats, setChats] = useState<ChatParam[]>([]);
   const router = useRouter();
   const { user } = useUser();
@@ -78,4 +78,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ChatPage;

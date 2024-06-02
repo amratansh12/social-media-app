@@ -14,7 +14,7 @@ interface Props {
   };
 }
 
-const page = ({ params: { id } }: Props) => {
+const MessagePage = ({ params: { id } }: Props) => {
   const [messages, setMessages] = useState<MessageParam[]>([]);
   const { user } = useUser();
 
@@ -48,4 +48,4 @@ const page = ({ params: { id } }: Props) => {
   );
 };
 
-export default page;
+export default MessagePage;

@@ -34,20 +34,12 @@ const MessageOutput = ({
     };
 
     fetchMessages();
-  }, [sender, receiver]);
+  }, [sender, receiver, setMessages]);
 
   useEffect(() => {
     const lastDiv = document.getElementById("lastMessage");
     lastDiv?.scrollIntoView();
   }, [messages]);
-
-  if (!sender || !receiver) {
-    return (
-      <div className="h-[67vh] flex items-center justify-center bg-slate-100">
-        <Loader2 className="text-soft-black h-8 w-8 animate-spin" />
-      </div>
-    );
-  }
 
   const parseDate = (date: Date) => {
     const newData = new Date(date);
