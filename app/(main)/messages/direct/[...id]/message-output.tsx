@@ -18,11 +18,11 @@ const MessageOutput = ({
   messages,
   setMessages,
 }: MessageOutputProps) => {
-  if (!sender || !receiver) {
-    return;
-  }
-
   useEffect(() => {
+    if (!sender || !receiver) {
+      return;
+    }
+
     const fetchMessages = async () => {
       try {
         const data = await getMessagesByChatParticipants(sender, receiver);
