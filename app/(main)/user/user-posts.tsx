@@ -21,8 +21,7 @@ const UserPosts = ({ id }: { id: string }) => {
     };
 
     fetchPosts();
-    console.log("IMAGES--", images);
-  }, []);
+  }, [id, images]);
 
   return (
     <>

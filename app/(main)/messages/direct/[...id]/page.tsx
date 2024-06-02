@@ -15,8 +15,8 @@ interface Props {
 }
 
 const page = ({ params: { id } }: Props) => {
-  const { user } = useUser();
   const [messages, setMessages] = useState<MessageParam[]>([]);
+  const { user } = useUser();
 
   if (!user) {
     return (

@@ -4,6 +4,7 @@ import { Chat } from "@/config/database/models/chat.model";
 import { User } from "@/config/database/models/user.model";
 import { connectToDatabase } from "@/config/database/mongoose";
 import { handleError } from "@/lib/utils";
+import { Message } from "@/config/database/models/message.model";
 
 export const createChat = async (userId1: string, userId2: string) => {
   try {
@@ -100,6 +101,7 @@ export const getMessagesByChatParticipants = async (
       participants: { $all: [user1._id, user2._id] },
     }).populate({
       path: "messages",
+      model: "Message",
       populate: [
         { path: "sendBy", model: "User" },
         { path: "sendTo", model: "User" },

@@ -11,9 +11,9 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const page = () => {
+  const [chats, setChats] = useState<ChatParam[]>([]);
   const router = useRouter();
   const { user } = useUser();
-  const [chats, setChats] = useState<ChatParam[]>([]);
 
   useEffect(() => {
     const fetchChats = async () => {
