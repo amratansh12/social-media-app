@@ -1,5 +1,4 @@
 import NavMenu from "./nav-menu";
-import { SearchUser } from "./search/search-user";
 
 interface HomeLayoutProps {
   children: React.ReactNode;

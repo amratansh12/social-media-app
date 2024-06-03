@@ -90,6 +90,9 @@ export const getMessagesByChatParticipants = async (
   try {
     await connectToDatabase();
 
+    console.log("USER ID1:--", user1Id);
+    console.log("USER ID2:--", user2Id[0]);
+
     const user1 = await User.findOne({ userId: user1Id });
     const user2 = await User.findOne({ userId: user2Id });
 
@@ -101,11 +104,9 @@ export const getMessagesByChatParticipants = async (
       participants: { $all: [user1._id, user2._id] },
     }).populate({
       path: "messages",
-      model: "Message",
-      populate: [
-        { path: "sendBy", model: "User" },
-        { path: "sendTo", model: "User" },
-      ],
+      populate: {
+        path: "sendBy sendTo",
+      },
     });
 
     if (!chat) {

@@ -2,8 +2,8 @@
 
 import { getMessagesByChatParticipants } from "@/actions/chat-actions";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Loader2 } from "lucide-react";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useUser } from "@clerk/nextjs";
+import { Dispatch, SetStateAction, useEffect } from "react";
 
 interface MessageOutputProps {
   sender: string;
@@ -18,23 +18,24 @@ const MessageOutput = ({
   messages,
   setMessages,
 }: MessageOutputProps) => {
+  const { isLoaded, user } = useUser();
+
   useEffect(() => {
-    if (!sender || !receiver) {
-      return;
+    if (isLoaded) {
+      const fetchMessages = async () => {
+        try {
+          const data = await getMessagesByChatParticipants(user?.id!, receiver);
+
+          setMessages((prevData) => [...prevData, ...JSON.parse(data!)]);
+          // console.log(JSON.parse(data!));
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      fetchMessages();
     }
-
-    const fetchMessages = async () => {
-      try {
-        const data = await getMessagesByChatParticipants(sender, receiver);
-
-        setMessages((prevData) => [...prevData, ...JSON.parse(data!)]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchMessages();
-  }, [sender, receiver, setMessages]);
+  }, [isLoaded]);
 
   useEffect(() => {
     const lastDiv = document.getElementById("lastMessage");

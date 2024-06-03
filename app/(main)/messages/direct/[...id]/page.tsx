@@ -5,7 +5,7 @@ import { ArrowLeftFromLine, Loader2 } from "lucide-react";
 import Link from "next/link";
 import MessageForm from "./message-form";
 import MessageOutput from "./message-output";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useUser } from "@clerk/nextjs";
 
 interface Props {
@@ -16,12 +16,12 @@ interface Props {
 
 const MessagePage = ({ params: { id } }: Props) => {
   const [messages, setMessages] = useState<MessageParam[]>([]);
-  const { user } = useUser();
+  const { user, isLoaded } = useUser();
 
-  if (!user) {
+  if (!isLoaded) {
     return (
-      <div className="py-4">
-        <Loader2 className="animate-spin h-8 w-8 text-soft-black" />
+      <div className="h-[65vh] py-4 flex items-center justify-center w-full">
+        <Loader2 className="text-soft-black animate-spin h-8 w-8" />
       </div>
     );
   }
