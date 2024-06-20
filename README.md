@@ -101,7 +101,7 @@ For any inquiries or support, please contact:
 
 ## FAQ
 
--**Q: How do create a new post?**
+**Q: How do create a new post?**
 - Go to the home page and click on "Upload photo". Upload photo, enter captions and other field and then post!
 
 **Q: How can I like a photo?**
