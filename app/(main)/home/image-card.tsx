@@ -143,9 +143,9 @@ export const ImageCard = ({
               </DialogDescription>
             </DialogHeader>
 
-            <DialogFooter className="border-t-2 border-slate-200 pt-2 w-full">
+            {/* <DialogFooter className="border-t-2 border-slate-200 pt-2 w-full">
               {comments.length === 0 ? <p>No comments</p> : <p>Comments</p>}
-            </DialogFooter>
+            </DialogFooter> */}
           </DialogContent>
         </Dialog>
       </div>
